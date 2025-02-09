@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contratação - Fiocruz</title>
+    <link rel="stylesheet" href="../static/css/styles_home.css">
+</head>
+<body>
+    <div class="container" style="width: 80%; height: 80%; padding: 15px; flex-direction: column;">
+        <div style="display: flex; justify-content: center;">
+            <label style="font-weight: bold; font-size: x-large;">Contratação {{contratacao.id}}</label>
+        </div>             
+        <form action="{{url_for('Contratacao', id = contratacao.id )}}" style="margin: 20px;" method="post">
+            <div>
+                <label>Nome do Titular :</label>
+                <input type="text" style="width: 30%;" value="{{contratacao.titular}}" disabled>
+
+                <label style="margin-left: 30px;">Data de entrada :</label>
+                <input type="date" style="width: 30%;" value="{{contratacao.entrada}}" disabled>
+            </div>
+           
+            <div style="margin-top: 20px;">
+                <label>Código do processo :</label>
+                <input type="text" placeholder="Digite aqui" style="width: 30%;" value="{{contratacao.processo}}" disabled>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <label>Status :</label>
+                {% if contratacao.status == "Em análise" %}
+                <div style="display: flex; flex-direction: column;">
+                    <label>
+                        <input type="radio" name="opcao" checked value="Em análise"> Em análise
+                    </label>
+                    <label>
+                        <input type="radio" name="opcao" value="Aprovado"> Aprovado
+                    </label>
+                    <label>
+                        <input type="radio" name="opcao" value="Reprovado"> Reprovado
+                    </label>
+                </div>
+            {% elif contratacao.status == "Aprovado" %}
+                <div style="display: flex; flex-direction: column;">
+                    <label>
+                        <input type="radio" name="opcao" value="Em análise"> Em análise
+                    </label>
+                    <label>
+                        <input type="radio" name="opcao" checked value="Aprovado"> Aprovado
+                    </label>
+                    <label>
+                        <input type="radio" name="opcao" value="Reprovado"> Reprovado
+                    </label>
+                </div>   
+            {% else %}
+                <div style="display: flex; flex-direction: column;">
+                    <label>
+                        <input type="radio" name="opcao" value="Em análise"> Em análise
+                    </label>
+                    <label>
+                        <input type="radio" name="opcao" value="Aprovado"> Aprovado
+                    </label>
+                    <label>
+                        <input type="radio" name="opcao" checked value="Reprovado"> Reprovado
+                    </label>
+                </div> 
+                 
+            {% endif %}
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="submit">SALVAR</button>
+            </div>
+
+            
+        </form>
+    </div>
+</body>
+</html>

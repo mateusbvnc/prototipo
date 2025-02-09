@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contratações - Fiocruz</title>
+    <link rel="stylesheet" href="../static/css/styles_home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #cbd2dd;
+        }
+
+        tr:hover {
+            background-color: #e9ecef;
+            transition: 0.3s;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .select{            
+            padding: 2px;
+            border: none;
+            box-shadow: 0px 0px 3px 2px gray;   
+            min-width: 100%;         
+            background-color: #ffffff;
+        }
+
+        .Nova_Linha{            
+            margin-top: 10px;  
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #cbd2dd;   
+            height: 40px;       
+        }
+
+        .new{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+        
+
+    </style>
+</head>
+<body style="align-items: start; padding-top: 20px;">
+    <div style="min-width: 80vw;">  
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>DATA DE ENTRADA</th>
+                    <th>TITULAR</th>
+                    <th>NÚMERO DO PROCESSO</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contratacao in lista %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('Contratacao', id=contratacao.id) }}">{{ contratacao.id }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('Contratacao', id=contratacao.id) }}">{{ contratacao.entrada }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('Contratacao', id=contratacao.id) }}">{{ contratacao.titular }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('Contratacao', id=contratacao.id) }}">{{ contratacao.processo }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('Contratacao', id=contratacao.id) }}">{{ contratacao.status }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+             
+            </tbody>
+        </table>
+        <div  class="Nova_Linha" >
+            <a href="{{url_for('novaLinha')}}" class="new">ADICIONAR PROCESSO</a>
+        </div>
+    </div>    
+</body>
+</html>
