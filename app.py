@@ -5,11 +5,12 @@ from datetime import datetime
 '''****************************************************************************************************'''
 app = Flask(__name__)
 
-from .app_config import * # carrega todas as confiracoes de app
+from app_config import * # carrega todas as confiracoes de app
 '''****************************************************************************************************'''
 db = SQLAlchemy(app)
 
-from .models import * # carrega todos os modelos
+from models.contrataceos import contratacao
+from models.usuario import usuario
 
 with app.app_context():
     db.create_all() # cria o banco de dados se não existir  
